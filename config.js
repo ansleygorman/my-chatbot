@@ -42,7 +42,7 @@ Rules:
   ],
 
   // Which Gemini model to use
-  model: "gemini-flash-lite-latest",
+  model: "gemini-3.1-flash-lite",
 
   // Main color (any color code). Green by default.
   themeColor: "#16a34a",
