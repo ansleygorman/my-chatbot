@@ -65,29 +65,6 @@ function formatText(raw) {
   return html;
 }
 
-// ---------- Copying ----------
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch (e) {
-    // Backup method for older browsers
-    try {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      const ok = document.execCommand("copy");
-      ta.remove();
-      return ok;
-    } catch (e2) {
-      return false;
-    }
-  }
-}
-
 // ---------- Chat display ----------
 function addBubble(kind, text) {
   const div = document.createElement("div");
@@ -98,33 +75,6 @@ function addBubble(kind, text) {
   messagesEl.scrollTop = messagesEl.scrollHeight;
   return div;
 }
-
-// A bot answer with a Copy button underneath
-function addReply(text) {
-  const wrap = document.createElement("div");
-  wrap.className = "reply";
-
-  const bubble = document.createElement("div");
-  bubble.className = "bubble bot";
-  bubble.innerHTML = formatText(text);
-
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "copy";
-  btn.textContent = "Copy";
-  btn.setAttribute("aria-label", "Copy this reply");
-  btn.addEventListener("click", async () => {
-    const ok = await copyText(text);
-    btn.textContent = ok ? "Copied!" : "Couldn't copy";
-    setTimeout(() => { btn.textContent = "Copy"; }, 1500);
-  });
-
-  wrap.appendChild(bubble);
-  wrap.appendChild(btn);
-  messagesEl.appendChild(wrap);
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-}
-
 function showThinking() {
   const div = document.createElement("div");
   div.className = "bubble bot thinking";
@@ -205,7 +155,7 @@ async function sendMessage(text) {
       return;
     }
     history.push({ role: "model", parts: [{ text: reply }] });
-    addReply(reply);
+    addBubble("bot", reply);
   } catch (err) {
     history.pop();
     thinking.remove();
