@@ -61,6 +61,19 @@ main { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: 
 .bot { align-self: flex-start; background: var(--bot); border-bottom-left-radius: 4px; }
 .user { align-self: flex-end; background: var(--accent); color: #fff; border-color: var(--accent); border-bottom-right-radius: 4px; }
 .error { align-self: flex-start; background: #fee2e2; color: #7f1d1d; border-color: #fca5a5; }
+
+/* Wrapper that holds a bot reply and its Copy button */
+.reply {
+  align-self: flex-start; max-width: 85%;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+}
+.reply .bubble { max-width: 100%; }
+button.copy {
+  background: transparent; color: var(--muted); border: 1px solid var(--border);
+  padding: 3px 10px; font-size: 0.78rem; font-weight: 500; border-radius: 8px;
+}
+button.copy:hover { color: var(--accent); border-color: var(--accent); }
+
 .thinking { display: flex; gap: 5px; padding: 14px; }
 .thinking span {
   width: 8px; height: 8px; border-radius: 50%; background: var(--muted);
