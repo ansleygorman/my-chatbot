@@ -46,4 +46,31 @@ Rules:
 
   // Main color (any color code). Green by default.
   themeColor: "#16a34a",
+
+  // ============================================================
+  //  KNOWLEDGE SETTINGS (lets the bot answer from your own notes)
+  // ============================================================
+
+  // true = the bot looks in your notes file before answering.
+  // false = the bot works like before, with no notes.
+  useKnowledge: true,
+
+  // The name of your notes file (it sits next to index.html)
+  knowledgeFile: "knowledge.md",
+
+  // How the bot finds the right notes:
+  //   "meaning"  = finds notes with a similar MEANING (smarter, needs your API key)
+  //   "keywords" = finds notes that share the same WORDS (simple, always works)
+  // If "meaning" fails for any reason, the bot switches to keywords by itself.
+  searchMethod: "meaning",
+
+  // How many notes to hand the AI for each question (3 is a good start)
+  topK: 3,
+
+  // The Gemini model that turns notes into numbers for "meaning" search.
+  // Only change this if Google retires it.
+  embeddingModel: "gemini-embedding-2",
+
+  // Extra rules added to the bot's instructions when notes are used.
+  knowledgeRules: `You will receive NOTES from my knowledge file along with each question. If the notes answer the question, base your answer on them and cite the note numbers like [1]. If they don't, begin with 'I couldn't find that in my notes.' Never invent facts, dates, rules or policies that are not in the notes.`,
 };
