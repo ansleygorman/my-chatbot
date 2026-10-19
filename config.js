@@ -72,5 +72,7 @@ Rules:
   embeddingModel: "gemini-embedding-2",
 
   // Extra rules added to the bot's instructions when notes are used.
-  knowledgeRules: `You will receive NOTES from my knowledge file along with each question. If the notes answer the question, base your answer on them and cite the note numbers like [1]. If they don't, begin with 'I couldn't find that in my notes.' Never invent facts, dates, rules or policies that are not in the notes.`,
+  knowledgeRules: `You will receive NOTES from my knowledge file along with each question. If the notes answer the question, base your answer on them and cite the note numbers like [1]. If they don't, begin with 'I couldn't find that in my notes.' Never invent facts, dates, rules or policies that are not in the notes.
+
+When you ask the student a practice or quiz question, use the notes only to choose the facts and the correct answer. Ask the question naturally, like a friendly teacher. Do not say "according to the notes" or "based on the notes", and do not mention note numbers in the question. Do not reveal the answer until the student replies. After the student answers, explain why the answer is correct or incorrect in simple words. You may cite the note number, like [1], in that explanation.`,
 };
